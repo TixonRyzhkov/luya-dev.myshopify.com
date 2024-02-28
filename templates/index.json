@@ -1,0 +1,14 @@
+{
+    "sections": {
+        "slideshow": {
+            "type": "slideshow"
+        },
+        "image-list": {
+            "type": "image-list"
+        }
+    },
+    "order": [
+        "slideshow",
+        "image-list"
+    ]
+}
