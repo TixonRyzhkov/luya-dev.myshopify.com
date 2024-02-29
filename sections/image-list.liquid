@@ -35,14 +35,24 @@
     }
 {% endschema %}
 
-<section class="image-list">
-    <div class="image-list__list">
-        {% for block in section.blocks %}
-            <div class="image-list-item">
-                <img class="image-list-item__image" src="{{ block.settings.image | img_url: 'medium' }}" alt="{{ block.settings.title }}" width="300" height="300">
-                <h3 class="image-list-item__title">{{ block.settings.title }}</h3>
-                <div class="image-list-item__text">{{ block.settings.text }}</div>
-            </div>
-        {% endfor %}
-    </div>
-</section>
+{% if section.blocks.size > 0 %}
+    <section class="image-list">
+        <div class="image-list__list">
+        
+            {% for block in section.blocks %}
+                <div class="image-list-item">
+                    {% if block.settings.image != blank %}
+                        <img class="image-list-item__image" src="{{ block.settings.image | img_url: 'medium' }}" alt="{{ block.settings.title }}" width="300" height="300">
+                    {% endif %}
+                    {% if block.settings.title != blank %}
+                        <h3 class="image-list-item__title">{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% if block.settings.text != blank %}
+                        <div class="image-list-item__text">{{ block.settings.text }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        
+        </div>
+    </section>
+{% endif %}

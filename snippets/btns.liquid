@@ -1,0 +1,19 @@
+{%- comment -%}
+    File: snippets/btns.liquid
+    Description: Snippet for rendering buttons
+    Usage: {% include 'btns', class:'hero', list:section.blocks %}
+{%- endcomment -%}
+
+{% if list.size > 0 %}
+    <div class="{{ class }}__btns btns">
+        {% for block in list %}
+            {% if block.type == 'button' %}
+                {% if block.settings.url and block.settings.text %}
+                    <a class="{{ class }}__btn btn" href="{{ block.settings.url }}">
+                        {{ block.settings.text }}
+                    </a>
+                {% endif %}                
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

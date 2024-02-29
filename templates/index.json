@@ -1,14 +1,9 @@
 {
+    "name": "Default",
     "sections": {
-        "slideshow": {
-            "type": "slideshow"
-        },
-        "image-list": {
-            "type": "image-list"
+        "template-homepage": {
+            "type": "dummy"
         }
     },
-    "order": [
-        "slideshow",
-        "image-list"
-    ]
+    "order": ["template-homepage"]
 }

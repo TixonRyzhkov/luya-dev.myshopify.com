@@ -1,0 +1,74 @@
+{% schema %}
+    {
+        "name": "Hero",
+        "tag": "section",
+        "class": "hero section-yellow",
+        "presets": [
+            {
+                "name": "Hero"
+            }
+        ],
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "textarea",
+                "id": "text",
+                "label": "Text"
+            }
+        ],
+        "blocks": [
+            {
+                "name": "Button",
+                "type": "button",
+                "settings": [
+                    {
+                        "type": "url",
+                        "id": "url",
+                        "label": "Url"
+                    },
+                    {
+                        "type": "text",
+                        "id": "text",
+                        "label": "text"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}
+
+<div class="hero__wrapper wrapper">
+
+    <div class="hero__content">
+        <div class="hero__row row">
+            <div class="col-lg-6">
+                <div class="hero__info">
+                    {% if section.settings.title != blank %}
+                        <h3 class="hero__title title-l">{{ section.settings.title }}</h3>
+                    {% endif %}
+                    {% if section.settings.text != blank %}
+                        <div class="hero__text text-l">{{ section.settings.text }}</div>
+                    {% endif %}
+
+                    {% include 'btns', class:'hero', list:section.blocks %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                {% if section.settings.image != blank %}
+                    <img class="hero__image" src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.title }}" width="530" height="530" loading="lazy">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+

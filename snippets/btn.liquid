@@ -1,0 +1,11 @@
+{%- comment -%}
+    File: snippets/btn.liquid
+    Description: Snippet for rendering hero buttons
+    Usage: {% include 'btn', class:'btn', url:'%url%', text:'%text%' %}
+{%- endcomment -%}
+
+{% if url and text %}
+    <a class="{{ class }}" href="{{ url }}">
+        {{ text }}
+    </a>
+{% endif %}

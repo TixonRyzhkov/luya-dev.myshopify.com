@@ -1,11 +1,21 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Themekit template theme",
-    "theme_version": "1.0.0",
-    "theme_author": "Shopify",
-    "theme_documentation_url": "https://github.com/Shopify/themekit",
-    "theme_support_url": "https://github.com/Shopify/themekit/issues"
+    "theme_name": "Luya",
+    "theme_version": "1.0",
+    "theme_author": "Bato",
+    "theme_documentation_url": "https://github.com/TixonRyzhkov/shopify.loc",
+    "theme_support_url": "https://bato.dev/contact"
+  },
+  {
+    "name": "Global",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo"
+        }
+    ]
   },
   {
     "name": "Home page",
