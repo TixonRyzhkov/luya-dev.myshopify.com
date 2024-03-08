@@ -1,0 +1,49 @@
+{% comment %}
+Template Name: Recipe
+{% endcomment %}
+
+<div class="recipe">
+    <section class="recipe__main">
+        <div class="recipe__wrapper wrapper inner-wrap">
+            <h1 class="recipe__title title-s">{{ article.title }}</h1>
+
+            {% if article.image %}
+                <div class="recipe__image">
+                    {{ article.image | image_url: width: 760 | image_tag: class: 'ofc', loading: 'lazy' }}
+                </div>
+            {% endif %}
+
+            {% if article.metafields.custom.image_text.value %}
+                <div class="recipe-image-text">
+                    {% for item in article.metafields.custom.image_text.value %}
+                        <div class="recipe-image-text__item">
+                            <div class="recipe-image-text__image">
+                                {{ item.image | image_url: width: 200 | image_tag: class: 'ofc', loading: 'lazy' }}
+                            </div>
+                            <div class="recipe-image-text__text text-l">{{ item.text }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if article.metafields.custom.recipe_author.value %}
+                {% assign item = article.metafields.custom.recipe_author.value %}
+
+                <div class="recipe-author">
+                    <div class="recipe-author__image">
+                        {{ item.image | image_url: width: 200 | image_tag: class: 'ofc', loading: 'lazy' }}
+                    </div>
+                    <div class="recipe-author__info text">
+                        <div class="recipe-author__name">{{ item.author }}</div>
+                        <div class="recipe-author__text">{{ item.text | metafield_tag }}</div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% include 'article-related-products', article:article %}
+
+            <div class="recipe__text text">{{ article.content }}</div>
+        </div>
+    </section>
+</div>
+

@@ -1,57 +1,25 @@
 [
-  {
-    "name": "theme_info",
-    "theme_name": "Luya",
-    "theme_version": "1.0",
-    "theme_author": "Bato",
-    "theme_documentation_url": "https://github.com/TixonRyzhkov/shopify.loc",
-    "theme_support_url": "https://bato.dev/contact"
-  },
-  {
-    "name": "Global",
-    "settings": [
-        {
-            "type": "image_picker",
-            "id": "logo",
-            "label": "Logo"
-        }
-    ]
-  },
-  {
-    "name": "Home page",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Slider"
-      },
-      {
-        "type": "checkbox",
-        "id": "autoPlay",
-        "label": "Auto Play",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "wrapAround",
-        "label": "Wrap Around",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "pageDots",
-        "label": "Show Page Dots",
-        "default": false
-      },
-      {
-        "type": "header",
-        "content": "Custom Icons"
-      },
-      {
-        "type": "checkbox",
-        "id": "custom_icons_enabled",
-        "label": "Enable Custom Icons",
-        "default": false
-      }
-    ]
-  }
+    {
+        "name": "theme_info",
+        "theme_name": "Luya",
+        "theme_version": "1.0",
+        "theme_author": "Bato",
+        "theme_documentation_url": "https://github.com/TixonRyzhkov/shopify.loc",
+        "theme_support_url": "https://bato.dev/contact"
+    },
+    {
+        "name": "Global",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "logo",
+                "label": "Logo"
+            },
+            {
+                "type": "image_picker",
+                "id": "favicon",
+                "label": "Favicon"
+            }
+        ]
+    }
 ]

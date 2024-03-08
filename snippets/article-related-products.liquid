@@ -1,0 +1,29 @@
+{%- comment -%}
+    File: snippets/article-related-products.liquid
+    Usage: {% include 'article-related-products', article:article %}
+{%- endcomment -%}
+
+{% if article.metafields.custom.related_products.value %}
+    <div class="recipe-related-products">
+        {% for product in article.metafields.custom.related_products.value %}
+            <div class="recipe-related-products__item">
+                <div class="recipe-related-products__image">
+                    {{ product | image_url: width: 360 | image_tag: class: 'ofc', loading: 'lazy' }}
+                </div>
+                <div class="recipe-related-products__info">
+                    <div class="recipe-related-products__title text-l">{{ product.title }}</div>
+
+                    {% if product.metafields.custom.dishes.value %}
+                        <div class="recipe-related-products__dishes text-l flex-block">
+                            {% for dish in product.metafields.custom.dishes.value %}
+                                <div class="recipe-related-products__dish">{{ dish }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <a class="recipe-related-products__btn btn" href="{{ product.url }}">{{ 'Jetzt bestellen' | t }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

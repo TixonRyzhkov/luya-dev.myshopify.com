@@ -1,0 +1,78 @@
+{% schema %}
+    {
+        "name": "Posts slider",
+        "tag": "section",
+        "class": "section posts-slider",
+        "settings": [
+            {
+                "type": "text",
+                "id": "pretitle",
+                "label": "Pretitle"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "blog",
+                "id": "blog",
+                "label": "Select Blog"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Posts-slider"
+            }
+        ]
+    }
+{% endschema %}
+
+{% assign blog_handle = section.settings.blog %}
+<div class="posts-slider__wrapper wrapper">
+    <div class="posts-slider__pretitle text-l centered">{{ section.settings.pretitle }}</div>
+    <h2 class="posts-slider__title title centered">{{ section.settings.title }}</h2>
+
+    {% if blog_handle %}
+        {% assign blog = blogs[blog_handle] %}
+        {% if blog %}
+            {% assign posts = blog.articles %}
+            {% if posts.size > 0 %}
+                <div class="posts-slider__content padded-wrapper">
+                    <div class="posts-slider__slider">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                {% for post in posts %}
+                                    <div class="swiper-slide w-auto">
+                                        {% include 'posts-item' post:post class:'posts-slider-item' %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="not-found">No posts found in selected blog.</div>
+            {% endif %}
+        {% else %}
+            <div class="not-found">Selected blog not found.</div>
+        {% endif %}
+    {% else %}
+        <div class="not-found">Please select a blog.</div>
+    {% endif %}
+</div>
+
+{% stylesheet %}
+.posts-slider {
+    background: var(--color-peach);
+}
+
+.posts-slider-item {
+    width: 25.5rem;
+}
+
+.posts-slider-item__image {
+    aspect-ratio: 255/345;
+    overflow: hidden;
+}
+{% endstylesheet %}

@@ -1,0 +1,7 @@
+{% if paginate.pages > 1 %}
+    <div class="pagination">
+        <div class="pagination__list">
+            {{ paginate | default_pagination: prev: '<', next: '>' }}
+        </div>
+    </div>
+{% endif %}

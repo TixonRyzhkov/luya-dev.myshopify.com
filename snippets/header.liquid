@@ -2,7 +2,7 @@
     <div class="header__wrapper wrapper">
         <div class="header__content">
             {% if settings.logo %}
-                <a class="header__logo" href="{{ url_for('home') }}">
+                <a class="header__logo" href="/">
                     <img class="ofcn" src="{{ settings.logo | img_url: 'master' }}" alt="Logo">
                 </a>
             {% endif %}

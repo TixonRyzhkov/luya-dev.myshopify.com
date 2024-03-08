@@ -1,0 +1,23 @@
+{%- comment -%}
+    File: snippets/product-item.liquid
+    Usage: {% include 'products-item', product:product, class:class %}
+{%- endcomment -%}
+
+{% if class %}
+    {% assign item_class = class %}
+{% else %}
+    {% assign item_class = 'products-item' %}
+{% endif %}
+
+<a class="{{ item_class }} flex-block" href="{{ product.url | within: collection }}">
+    <div class="{{ item_class }}__image">
+        <img class="ofc" src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+    </div>
+    <div class="{{ item_class }}__title text-l">{{ product.title }}</div>
+    <div class="{{ item_class }}__price">{{ product.price | money }}</div>
+    <div class="{{ item_class }}__dishes text-l flex-block">
+        {% for dish in product.metafields.custom.dishes.value %}
+            <div class="{{ item_class }}__dish">{{ dish }}</div>
+        {% endfor %}
+    </div>
+</a>

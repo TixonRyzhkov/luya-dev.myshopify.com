@@ -1,0 +1,15 @@
+{%- comment -%}
+    File: snippets/post-item.liquid
+    Usage: {% include 'posts-item', post:post, class:class %}
+{%- endcomment -%}
+
+{% if class %}
+    {% assign item_class = class %}
+{% else %}
+    {% assign item_class = 'posts-item' %}
+{% endif %}
+
+<a class="{{ item_class }} flex-block" href="{{ post.url }}">
+    <div class="{{ item_class }}__image"><img class="ofc" src="{{ post.image.src | img_url: 'medium' }}" alt="{{ post.title }}"></div>
+    <h4 class="{{ item_class }}__title text-l">{{ post.title }}</h4>
+</a>

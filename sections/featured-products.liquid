@@ -1,0 +1,73 @@
+{% schema %}
+    {
+        "name": "Featured products",
+        "tag": "section",
+        "class": "section featured-products",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "textarea",
+                "id": "text",
+                "label": "Text"
+            },
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "Collection"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Featured products"
+            }
+        ]
+    }
+{% endschema %}
+
+{% if section.settings.collection.products.size > 0 %}
+    <div class="featured-products__wrapper wrapper">
+        <div class="featured-products__content inner-wrap">
+            {% if section.settings.title %}
+                <h2 class="featured-products__title title">{{ section.settings.title }}</h2>
+            {% endif %}
+
+            {% if section.settings.text %}
+                <div class="featured-products__text text text_b">{{ section.settings.text }}</div>
+            {% endif %}
+        </div>
+
+        <div class="featured-products__list row">
+            {% for product in section.settings.collection.products %}
+                <div class="featured-products__col col-md-4 d-flex justify-content-center">
+                    {% include 'products-item', product:product %}
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endif %}
+
+
+{% stylesheet %}
+
+.featured-products {
+    text-align: center;
+}
+
+.featured-products__text {
+    margin-bottom: 8.5rem;
+}
+
+.featured-products__list .product-item {
+    text-align: left;
+}
+
+.featured-products .product-item__price {
+    display: none;
+}
+
+{% endstylesheet %}

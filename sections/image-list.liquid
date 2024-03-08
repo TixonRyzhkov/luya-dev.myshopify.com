@@ -2,7 +2,7 @@
     {
         "name": "Image list",
         "tag": "section",
-        "class": "section",
+        "class": "section image-list",
         "presets": [
             {
                 "name": "Image list"
@@ -36,7 +36,7 @@
 {% endschema %}
 
 {% if section.blocks.size > 0 %}
-    <section class="image-list">
+    <section class="image-list__wrapper wrapper">
         <div class="image-list__list">
         
             {% for block in section.blocks %}
