@@ -18,16 +18,20 @@
         {% endif %}
 
         <div class="product-recommendations__list">
-            {%- for product in recommendations.products -%}
-                <a class="product-recommendations-item" href="{{ product.url }}">
-                    <div class="product-recommendations-item__image">
-                        {{ product | image_url: width: 360 | image_tag: class: 'ofc', loading: 'lazy' }}
+            <div class="row row-v">
+                {%- for product in recommendations.products -%}
+                    <div class="col-lg-4">
+                        <a class="product-recommendations-item" href="{{ product.url }}">
+                            <div class="product-recommendations-item__image">
+                                {{ product | image_url: width: 360 | image_tag: class: 'ofc', loading: 'lazy' }}
+                            </div>
+    
+                            <div class="product-recommendations-item__title text-l">{{ product.title }}</div>
+                            <div class="product-recommendations-item__price">{{ product.price | money}}</div>
+                        </a>
                     </div>
-
-                    <div class="product-recommendations-item__title">{{ product.title }}</div>
-                    <div class="product-recommendations-item__price">{{ product.price | money}}</div>
-                </a>
-            {%- endfor -%}
+                {%- endfor -%}
+            </div>
         </div>
     {%- endif -%}
 </div>

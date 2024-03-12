@@ -8,19 +8,26 @@
                 <div class="product__col col-lg-6">
                     <div class="product__media">
                         <div class="product__image"><img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg"></div>
+                        
                         {% if product.images.size > 0 %}
                             <div class="product__thumbs">
                                 {% for image in product.images %}
-                                    <a href="{{ image.src | img_url: 'large' }}">
-                                        <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                                    <a class="product__thumb" href="{{ image.src | img_url: 'large' }}">
+                                        <img class="ofc" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
                                     </a>
                                 {% endfor %}
                             </div>
                         {% endif %}
 
-                        {% for image in product.metafields.custom.labels.value %}
-                            <img src="{{ image | img_url : 'medium' }}" alt="{{ image.alt | escape }}">
-                        {% endfor %}
+                        {% if product.metafields.custom.labels.value %}
+                            <div class="product__labels">
+                                {% for image in product.metafields.custom.labels.value %}
+                                    <div class="product__label">
+                                        <img class="ofcn" src="{{ image | img_url : 'medium' }}" alt="{{ image.alt | escape }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
 

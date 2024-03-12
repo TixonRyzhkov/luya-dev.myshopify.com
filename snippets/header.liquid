@@ -31,11 +31,11 @@
                 
                 {% if shop.customer_accounts_enabled %}
                     {% if customer %}
-                        <a href="/account">account</a>
-                        {{ 'log out' | customer_logout_link }}
+                        <a class="profile-nav__item" href="/account">account</a>
+                        {{ 'log out' | customer_logout_link | replace: '<a', '<a class="profile-nav__item"'  }}
                     {% else %}
-                        {{ 'log in ' | customer_login_link }}
-                        {{ 'register' | customer_register_link }}
+                        {{ 'log in ' | customer_login_link | replace: '<a', '<a class="profile-nav__item"'  }}
+                        {{ 'register' | customer_register_link | replace: '<a', '<a class="profile-nav__item"' }}
                     {% endif %}
                 {% endif %}
             </div>

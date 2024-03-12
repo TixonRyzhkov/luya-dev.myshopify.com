@@ -44,7 +44,7 @@
                             <div class="swiper-wrapper">
                                 {% for post in posts %}
                                     <div class="swiper-slide w-auto">
-                                        {% include 'posts-item' post:post class:'posts-slider-item' %}
+                                        {% include 'posts-item' post:post class:'posts-slider-item posts-item' %}
                                     </div>
                                 {% endfor %}
                             </div>
@@ -65,14 +65,5 @@
 {% stylesheet %}
 .posts-slider {
     background: var(--color-peach);
-}
-
-.posts-slider-item {
-    width: 25.5rem;
-}
-
-.posts-slider-item__image {
-    aspect-ratio: 255/345;
-    overflow: hidden;
 }
 {% endstylesheet %}

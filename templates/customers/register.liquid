@@ -1,21 +1,33 @@
 <!-- /templates/customers/register.liquid -->
 
-{% form 'create_customer' %}
+<div class="auth-page register-page">
+    <section class="register-main">
+        <div class="auth-page__wrapper wrapper">
 
-{{ form.errors | default_errors }}
+            {% form 'create_customer' %}
 
-<label for="first_name">First Name</label>
-<input type="text" value="" name="customer[first_name]" size="30" />
-
-<label for="last_name">Last Name</label>
-<input type="text" value="" name="customer[last_name]" size="30" />
-
-<label for="email">Email Address</label>
-<input type="email" value="" name="customer[email]" size="30" />
-
-<label for="password">Password</label>
-<input type="password" value="" name="customer[password]" size="30" />
-
-<input type="submit" value="Create" />
-
-{% endform %}
+                {{ form.errors | default_errors }}
+                
+                <div class="form__field">
+                    <input type="text" value="" name="customer[first_name]" size="30" placeholder="First name" />
+                </div>
+                
+                <div class="form__field">
+                    <input type="text" value="" name="customer[last_name]" size="30" placeholder="Last name" />
+                </div>
+                
+                <div class="form__field">
+                    <input type="email" value="" name="customer[email]" size="30" placeholder="Email Address" />
+                </div>
+                
+                <div class="form__field">
+                    <input type="password" value="" name="customer[password]" size="30" placeholder="Password" />
+                </div>
+                
+                <input type="submit" value="Create" />
+                
+            {% endform %}
+            
+        </div>
+    </section>
+</div>

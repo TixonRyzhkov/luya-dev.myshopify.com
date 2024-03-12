@@ -1,28 +1,32 @@
 <!-- /templates/customers/login.liquid -->
 
-<h2>Login</h2>
-{% form 'customer_login' %}
+<div class="auth-page login-page">
+    <section class="login-main">
+        <div class="auth-page__wrapper wrapper">
+            <div class="row">
 
-{{ form.errors | default_errors }}
+                <div class="col-6">
+                    <h2 class="title-xs">Login</h2>
+                    {% form 'customer_login' %}
+                        {{ form.errors | default_errors }}
+                        
+                        <div class="form__field"><input type="email" name="customer[email]" placeholder="Email Address" /></div>
+                        <div class="form__field"><input type="password" name="customer[password]" placeholder="Password" /></div>
+                        <input class="btn btn_orange" type="submit" value="Sign In" />
+                    {% endform %}
+                </div>
 
-<label for="customer_email">Email Address</label>
-<input type="email" name="customer[email]" />
+                <div class="col-6">
+                    <h2 class="title-xs">Forgot Password</h2>
+                    {% form 'recover_customer_password' %}
+                        {{ form.errors | default_errors }}
+                        
+                        <div class="form__field"><input type="email" name="email" placeholder="Email Address" /></div>
+                        <input class="btn btn_orange" type="submit" value="Submit" />
+                    {% endform %}
+                </div>
 
-<label for="customer_password">Password</label>
-<input type="password" name="customer[password]" />
-
-<input type="submit" value="Sign In" />
-
-{% endform %}
-
-<h2>Forgot Password</h2>
-{% form 'recover_customer_password' %}
-
-{{ form.errors | default_errors }}
-
-<label for="customer_email">Email Address</label>
-<input type="email" name="email" />
-
-<input type="submit" value="Submit" />
-
-{% endform %}
+            </div>
+        </div>
+    </section>
+</div>
