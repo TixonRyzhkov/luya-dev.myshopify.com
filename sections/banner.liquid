@@ -1,0 +1,36 @@
+{% if section.settings.image %}
+    <div class="banner__image">
+        <img src="{{ section.settings.image | img_url: 'original' }}" alt="Banner">
+    </div>
+{% endif %}
+
+{% schema %} 
+{
+    "name": "Banner",
+    "tag": "section",
+    "class": "banner no-padding",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Banner",
+            "category": "Custom"
+        }
+    ]
+}
+{% endschema %}
+
+
+
+{% stylesheet %}
+
+.banner img {
+    width: 100%;
+}
+
+{% endstylesheet %}

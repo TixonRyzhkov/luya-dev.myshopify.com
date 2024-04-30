@@ -26,6 +26,8 @@
 
     {% include 'footer' %}
 
+    {{ 'fonts.css' | asset_url | stylesheet_tag }}
+    
     {{ 'bootstrap-grid.min.css' | asset_url | stylesheet_tag }}
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     {{ 'reset.css' | asset_url | stylesheet_tag }}

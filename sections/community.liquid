@@ -1,0 +1,147 @@
+<div class="community__wrapper wrapper">
+    <div class="community__content inner-wrap">
+        {% if section.settings.subtitle != blank %}
+            <div class="community__subtitle text-l bold">{{ section.settings.subtitle }}</div>
+        {% endif %}
+
+        {% if section.settings.title != blank %}
+            <h2 class="community__title title">{{ section.settings.title }}</h2>
+        {% endif %}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="community__list">
+                    <div class="row">
+                        {% for block in section.blocks %}
+                            <div class="col-md-4">
+                                <div class="community-item">
+                                    {% if block.settings.image %}
+                                        <div class="community-item__image community-item__image_{{ forloop.index }}">
+                                            <img class="ofc" src="{{ block.settings.image | img_url: 'original' }}" alt="" width="340" height="340">
+                                        </div>
+                                    {% endif %}
+
+                                    {% if block.settings.title != blank %}
+                                        <div class="community-item__title title-xs">{{ block.settings.title }}</div>
+                                    {% endif %}
+
+                                    {% if block.settings.subtitle != blank %}
+                                        <div class="community-item__subtitle text-s bold">{{ block.settings.subtitle }}</div>
+                                    {% endif %}
+
+                                    {% if block.settings.text != blank %}
+                                        <div class="community-item__text text-s">{{ block.settings.text }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+
+{% schema %}
+{
+    "name": "Community",
+    "tag": "section",
+    "class": "community",
+    "settings": [
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Demo subtitle"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Welcome to our Store"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "text",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Demo title"
+                },
+                {
+                    "type": "text",
+                    "id": "subtitle",
+                    "label": "Subtitle",
+                    "default": "Demo subtitle"
+                },
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "Text",
+                    "default": "Demo text"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Community",
+            "category": "Custom"
+        }
+    ]
+}
+{% endschema %}
+
+
+
+{% stylesheet %}
+
+.community {
+    text-align: center;
+}
+
+.community__subtitle {
+    margin-bottom: 3rem;
+}
+
+.community .community__title {
+    margin-bottom: 8.5rem;
+}
+
+.community-item {
+    max-width: 100%;
+    width: 34rem;
+    text-align: left;
+}
+
+.community-item__image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    margin-bottom: 2rem;
+}
+
+.community-item__image_1 {
+    transform: rotate(-4.42deg) translateY(-1.6rem); 
+}
+
+.community-item__image_3 {
+    transform: rotate(6.64deg) translateX(-3rem) ;
+}
+
+.community-item__subtitle {
+    margin-bottom: 2rem;
+}
+
+{% endstylesheet %}

@@ -1,0 +1,115 @@
+{% schema %}
+{
+    "name": "Benefits",
+    "tag": "section",
+    "class": "benefits section-blue",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Welcome to our Store"
+        },
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Discover amazing products"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "Text",
+            "name": "List",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Benefits",
+            "category": "Custom"
+        }
+    ]
+}
+{% endschema %}
+
+<div class="benefits__wrapper wrapper">
+    <div class="benefits__content inner-wrap flex-block ">
+        {% if section.settings.title %}
+            <h2 class="benefits__title title">{{ section.settings.title }}</h2>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+            <div class="benefits__text text bold">{{ section.settings.text }}</div>
+        {% endif %}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+        <div class="benefits__list">
+            {% for block in section.blocks %}
+                <div class="benefits-item">
+                    {% if block.settings.image %}
+                        <img class="benefits-item__image" src="{{ block.settings.image | img_url: 'original' }}" alt="benefit image">
+                    {% endif %}
+
+                    {% if section.settings.title %}
+                        <div class="benefits-item__title text bold">{{ block.settings.title }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+
+
+{% stylesheet %}
+
+.benefits {
+    background: var(--color-blue);
+    text-align: center;
+}
+
+.benefits__text {
+    margin-bottom: 6.8rem;
+}
+
+.benefits__list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 6.4rem;
+}
+
+.benefits-item {
+    width: 24rem;
+    text-align: center;
+}
+
+.benefits-item__image {
+    width: 12rem;
+    height: 9.5rem;
+    margin: 0 auto;
+}
+
+.benefits-item__image img {
+    object-fit: contain;
+    object-position: center;
+}
+
+.benefits-item__text {
+    color: var(--color-orange);
+}
+
+{% endstylesheet %}

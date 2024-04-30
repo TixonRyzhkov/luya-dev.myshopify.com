@@ -1,0 +1,184 @@
+<div class="prefooter section_yellow">
+    <div class="prefooter__inner">
+        <div class="prefooter__wrapper wrapper">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div class="row justify-content-between">
+                        <div class="col-md-5">
+                            <div class="newsletter">
+                                <form class="newsletter__form form" action="/" method="post">
+                                    {% if section.settings.form_pretitle != blank %}
+                                        <div class="newsletter__pretitle text-s bold">{{ section.settings.form_pretitle }}</div>
+                                    {% endif %}
+
+                                    {% if section.settings.form_title != blank %}
+                                        <h2 class="newsletter__title title-s">{{ section.settings.form_title }}</h2>
+                                    {% endif %}
+
+                                    <div class="newsletter__form-field form__field">
+                                        <input type="email" value="" name="email" placeholder="E-Mail" class="required email round" id="mce-EMAIL" required>
+                                    </div>
+
+                                    {% if section.settings.form_text != blank %}
+                                        <div class="newsletter__text text-xs description">{{ section.settings.form_text }}</div>
+                                    {% endif %}
+
+                                    <button class="newsletter__btn btn">Anmelden</button>
+                                </form>
+                            </div>
+                        </div>
+                        {% if section.settings.image %}
+                            <div class="col-md-6">
+                                <div class="prefooter__image">
+                                    {{ section.settings.image | img_url: '530x495', scale: 2 | img_tag: '' }}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="row justify-content-between align-items-end">
+                        <div class="col-md-5">
+                            {% if section.blocks %}
+                                <div class="brands">
+                                    {% if section.settings.brands_title %}
+                                        <div class="brands__title text-l">{{ section.settings.brands_title }}</div>
+                                    {% endif %}
+                                    <div class="brands__list">
+                                        {% for block in section.blocks %}
+                                            {% if block.type == 'brands' %}
+                                                <div class="brands__item">
+                                                    <img class="ofc" src="{{ block.settings.image | img_url }}" alt="Brand">
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            {% if section.blocks %}
+                                <div class="social-links">
+                                    {% if section.settings.socials_pretitle %}
+                                        <div class="social__pretitle text-l">{{ section.settings.socials_pretitle }}</div>
+                                    {% endif %}
+                                    {% if section.settings.socials_title %}
+                                        <div class="social__title title-s">{{ section.settings.socials_title }}</div>
+                                    {% endif %}
+                                    <div class="social-links__list">
+                                        <div class="social-links__list-text text-l">luya.bio</div>
+                                        {% for block in section.blocks %}
+                                            {% if block.type == 'text' %}
+                                                <div class="social-links__item">
+                                                    <a href="{{ block.settings.url }}">
+                                                        <img src="{{ block.settings.image | img_url }}" alt="Social Link Image">
+                                                    </a>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if section.settings.footer_menu %}
+    <nav class="footer-menu">
+        <div class="footer-menu__wrapper wrapper">
+            <ul class="footer-menu__list">
+                {% for item in section.settings.footer_menu.links %}
+                    <li class="footer-menu__item">
+                        <a href="{{ item.url }}" class="footer-menu__link underline">{{ item.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+{% endif %}
+
+
+
+{% schema %}
+{
+    "name": "Footer",
+    "tag": "footer",
+    "class": "footer",
+    "settings": [
+        {
+            "type": "text",
+            "id": "form_pretitle",
+            "label": "Form pretitle",
+            "default": "Demo pretitle"
+        },
+        {
+            "type": "text",
+            "id": "form_title",
+            "label": "Form title",
+            "default": "Demo title"
+        },
+        {
+            "type": "richtext",
+            "id": "form_text",
+            "label": "Form text"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "brands_title",
+            "label": "Brands title"
+        },
+        {
+            "type": "text",
+            "id": "socials_pretitle",
+            "label": "Socials pretitle"
+        },
+        {
+            "type": "text",
+            "id": "socials_title",
+            "label": "Socials title"
+        },
+        {
+            "type": "link_list",
+            "id": "footer_menu",
+            "label": "Footer menu",
+            "default": "footer"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "text",
+            "name": "Social Link",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "URL"
+                }
+            ]
+        },
+        {
+            "type": "brands",
+            "name": "Brands",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

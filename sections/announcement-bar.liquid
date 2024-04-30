@@ -1,0 +1,29 @@
+{%- if section.settings.text != blank -%}
+<section class="announcement-bar">
+    <div class="announcement-bar__wrapper wrapper">
+        <div class="announcement-bar__text">{{ section.settings.text }}</div>
+    </div>
+</section>
+{%- endif -%}
+
+
+{% schema %}
+{
+    "name": "Announcement bar", 
+    "settings": [
+        {
+            "type": "text",
+            "id": "text",
+            "label": "Text",
+            "default": "Default text"
+        }
+    ]
+}
+{% endschema %}
+
+
+{%- style -%}
+    .announcement-bar {
+        
+    }
+{%- endstyle -%}

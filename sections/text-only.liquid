@@ -1,0 +1,133 @@
+{% schema %}
+{
+    "name": "Text only",
+    "tag": "section",
+    "class": "text-only centered",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "pretitle",
+            "label": "Pretitle",
+            "default": "Demo pretitle"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Demo title"
+        },
+        {
+            "type": "text",
+            "id": "bigtext",
+            "label": "Big text",
+            "default": "Demo big text"
+        },
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Demo text"
+        },
+        {
+            "type": "select",
+            "id": "color",
+            "label": "Background color",
+            "options": [
+                {
+                    "value": "section_white",
+                    "label": "White"
+                },
+                {
+                    "value": "section_blue",
+                    "label": "Blue"
+                },
+                {
+                    "value": "section_green",
+                    "label": "Green"
+                },
+                {
+                    "value": "section_red",
+                    "label": "Red"
+                }
+            ],
+            "default": "section_white"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "Text",
+            "name": "Button",
+            "settings": [
+                {
+                    "type": "url",
+                    "id": "button_link",
+                    "label": "Button Link",
+                    "default": "/"
+                },
+                {
+                    "type": "text",
+                    "id": "button_text",
+                    "label": "Button Text",
+                    "default": "Shop Now"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Text only",
+            "category": "Custom"
+        }
+    ]
+}
+{% endschema %}
+
+<div class="text-only__inner section__inner {{ section.settings.color }}">
+    <div class="text-only__wrapper wrapper">
+        <div class="text-only__content flex-block">
+
+            {% if section.settings.pretitle != blank %}
+                <div class="text-only__pretitle text-l">{{ section.settings.pretitle }}</div>
+            {% endif %}
+
+            {% if section.settings.image %}
+                <img class="benefits-item__image" src="{{ section.settings.image | img_url: 'original' }}" alt="image">
+            {% endif %}
+
+            {% if section.settings.title != blank %}
+                <h2 class="text-only__title title">{{ section.settings.title }}</h2>
+            {% endif %}
+    
+            {% if section.settings.bigtext != blank %}
+                <div class="text-only__bigtext title-l">{{ section.settings.bigtext }}</div>
+            {% endif %}
+    
+
+            {% if section.settings.text != blank %}
+                <div class="text-only__text text bold inner-wrap">{{ section.settings.text }}</div>
+            {% endif %}
+
+            {% if section.blocks.size > 0 %}
+                <div class="text-only__btns">
+                    {% for block in section.blocks %}
+                        {% if block.settings.button_link %}
+                            <a class="text-only__btn btn" href="{{ block.settings.button_link }}">{{ block.settings.button_text }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% stylesheet %}
+    .text-only__btns {
+        padding-top: 1.6rem;
+    }
+{% endstylesheet %}

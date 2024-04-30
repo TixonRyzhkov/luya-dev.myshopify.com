@@ -1,0 +1,64 @@
+{% schema %}
+{
+  "name": "Dynamic Rich Text Section",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Section Heading",
+      "id": "section_heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "richtext",
+      "name": "Rich Text Block",
+      "settings": [
+        {
+          "type": "richtext",
+          "label": "Block Content",
+          "id": "block_content"
+        },
+        {
+          "type": "image_picker",
+          "label": "Block Image",
+          "id": "block_image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic Rich Text",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+{% if section.blocks.size > 0 %}
+<section class="dynamic-section">
+  <h2 class="section-heading">{{ section.settings.section_heading }}</h2>
+  {% for block in section.blocks %}
+    <div class="dynamic-block">
+      {% if block.settings.block_image %}
+        <img src="{{ block.settings.block_image | img_url: 'medium' }}" alt="Block Image">
+      {% endif %}
+      {{ block.settings.block_content }}
+    </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+<style>
+  .dynamic-section {
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  .section-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .dynamic-block {
+    margin-bottom: 20px;
+  }
+</style>

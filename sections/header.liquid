@@ -1,0 +1,56 @@
+<div class="header__wrapper wrapper">
+    <div class="row align-items-center justify-content-between">
+
+        {% if section.settings.logo %}
+            <div class="col-6 col-md-2">
+                <a class="header__logo logo" href="{{ shop.url }}">
+                    <img src="{{ section.settings.logo | img_url: 'medium' }}" alt="logo">
+                </a>
+            </div>
+        {% endif %}
+
+        {% if linklists.main-menu.links %}
+            <div class="col-8 d-none d-lg-block">
+                <nav class="header-nav">
+                    {% for item in linklists.main-menu.links %}
+                        <li class="header-nav__item">
+                            <a href="{{ item.url }}" class="header-nav__link underline">{{ item.title }}</a>
+                        </li>
+                    {% endfor %}
+                </nav>
+            </div>
+        {% endif %}
+
+        <div class="col-6 col-md-2">
+            <div class="header__icons">
+                {% if shop.customer_accounts_enabled %}
+                    <a class="header__icon header__icon--account" href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">
+                      {% render 'icon-account' %}
+                    </a>
+                {% endif %}
+
+                <a class="header__icon" href="/cart">{% render 'icon-cart' %}</a>
+
+                <div class="header__menu-trigger menu-trigger"><div class="menu-trigger__lines"><i></i><i></i><i></i></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'mobile-menu' %}
+
+
+{% schema %}
+{
+    "name": "Header",
+    "tag": "header",
+    "class": "header",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo"
+        }
+    ]
+}
+{% endschema %}

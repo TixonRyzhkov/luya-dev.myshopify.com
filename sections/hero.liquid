@@ -51,7 +51,7 @@
     <div class="hero__content">
         <div class="hero__row row">
             <div class="col-lg-6">
-                <div class="hero__info">
+                <div class="hero__info flex-block">
                     {% if section.settings.title != blank %}
                         <h3 class="hero__title title-l">{{ section.settings.title }}</h3>
                     {% endif %}
@@ -64,11 +64,27 @@
             </div>
             <div class="col-lg-6">
                 {% if section.settings.image != blank %}
-                    <img class="hero__image" src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.title }}" width="530" height="530" loading="lazy">
+                    <div class="hero__image">
+                        <img class="ofcn" src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.title }}" width="530" height="530" loading="lazy">
+                    </div>
                 {% endif %}
             </div>
         </div>
     </div>
-
 </div>
 
+{% stylesheet %}
+    .hero__info {
+        gap : 3rem;
+    }
+
+    .hero__image {
+        aspect-ratio: 1;
+        margin-bottom: -16rem;
+        transform: rotate(5deg) translateY(5rem); 
+    }
+
+    .hero__btns {
+        padding-top: 1.6rem;
+    }
+{% endstylesheet %}
