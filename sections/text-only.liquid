@@ -2,7 +2,7 @@
 {
     "name": "Text only",
     "tag": "section",
-    "class": "text-only centered",
+    "class": "text-only centered no-padding",
     "settings": [
         {
             "type": "image_picker",
@@ -39,23 +39,23 @@
             "label": "Background color",
             "options": [
                 {
-                    "value": "section_white",
+                    "value": "section-white",
                     "label": "White"
                 },
                 {
-                    "value": "section_blue",
+                    "value": "section-blue",
                     "label": "Blue"
                 },
                 {
-                    "value": "section_green",
+                    "value": "section-green",
                     "label": "Green"
                 },
                 {
-                    "value": "section_red",
+                    "value": "section-red",
                     "label": "Red"
                 }
             ],
-            "default": "section_white"
+            "default": "section-white"
         }
     ],
     "blocks": [
@@ -87,7 +87,7 @@
 }
 {% endschema %}
 
-<div class="text-only__inner section__inner {{ section.settings.color }}">
+<div class="text-only__inner section-inner {{ section.settings.color }}">
     <div class="text-only__wrapper wrapper">
         <div class="text-only__content flex-block">
 
@@ -96,7 +96,9 @@
             {% endif %}
 
             {% if section.settings.image %}
-                <img class="benefits-item__image" src="{{ section.settings.image | img_url: 'original' }}" alt="image">
+                <div class="text-only__image">
+                    <img class="ofcn" src="{{ section.settings.image | img_url: 'original' }}" alt="image">
+                </div>
             {% endif %}
 
             {% if section.settings.title != blank %}
@@ -129,5 +131,9 @@
 {% stylesheet %}
     .text-only__btns {
         padding-top: 1.6rem;
+    }
+    
+    .text-only__image {
+        height: 13.5rem;
     }
 {% endstylesheet %}

@@ -2,7 +2,7 @@
 {
     "name": "Benefits",
     "tag": "section",
-    "class": "benefits section-blue",
+    "class": "benefits section-blue no-padding",
     "settings": [
         {
             "type": "text",
@@ -45,31 +45,35 @@
 {% endschema %}
 
 <div class="benefits__wrapper wrapper">
-    <div class="benefits__content inner-wrap flex-block ">
-        {% if section.settings.title %}
-            <h2 class="benefits__title title">{{ section.settings.title }}</h2>
-        {% endif %}
+    <div class="benefits__inner section-inner">
+        <div class="benefits__content inner-wrap flex-block ">
+            {% if section.settings.title %}
+                <h2 class="benefits__title title">{{ section.settings.title }}</h2>
+            {% endif %}
 
-        {% if section.settings.text != blank %}
-            <div class="benefits__text text bold">{{ section.settings.text }}</div>
+            {% if section.settings.text != blank %}
+                <div class="benefits__text text bold">{{ section.settings.text }}</div>
+            {% endif %}
+        </div>
+
+        {% if section.blocks.size > 0 %}
+            <div class="benefits__list">
+                {% for block in section.blocks %}
+                    <div class="benefits-item">
+                        {% if block.settings.image %}
+                            <div class="benefits-item__image">
+                                <img class="ofcn" src="{{ block.settings.image | img_url: 'original' }}" alt="benefit image">
+                            </div>
+                        {% endif %}
+
+                        {% if section.settings.title %}
+                            <div class="benefits-item__title text bold">{{ block.settings.title }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
         {% endif %}
     </div>
-
-    {% if section.blocks.size > 0 %}
-        <div class="benefits__list">
-            {% for block in section.blocks %}
-                <div class="benefits-item">
-                    {% if block.settings.image %}
-                        <img class="benefits-item__image" src="{{ block.settings.image | img_url: 'original' }}" alt="benefit image">
-                    {% endif %}
-
-                    {% if section.settings.title %}
-                        <div class="benefits-item__title text bold">{{ block.settings.title }}</div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
 </div>
 
 
@@ -98,8 +102,8 @@
 }
 
 .benefits-item__image {
+    aspect-ratio: 12/9.5;
     width: 12rem;
-    height: 9.5rem;
     margin: 0 auto;
 }
 

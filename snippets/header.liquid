@@ -7,7 +7,7 @@
                 </a>
             {% endif %}
 
-            <div class="header-nav">
+            <div class="header-nav d-none d-lg-flex">
                 {% for link in linklists.main-menu.links %}
                     {% assign child_list_handle = link.title | handleize %}
                     {% if linklists[child_list_handle].links != blank %}
@@ -21,25 +21,32 @@
                 {% endfor %}
             </div>
 
-            <div class="profile-nav">
+            <div class="profile-nav d-none d-lg-flex">
+                {% if shop.customer_accounts_enabled %}
+                    {% if customer %}
+                        <a class="profile-nav__item" href="/account">
+                            <img class="ofc" src="{{ 'icon-logout.svg' | asset_url }}" alt="Account" />
+                        </a>
+                        {{ 'log out' | customer_logout_link | replace: '<a', '<a class="profile-nav__item"'  }}
+                    {% else %}
+                        <a class="profile-nav__item" href="/login">
+                            <img class="ofc" src="{{ 'icon-profile.svg' | asset_url }}" alt="Log In" />
+                        </a>
+                    {% endif %}
+                {% endif %}
+
                 <a class="profile-nav__item" href="/cart">
                     <span class="profile-nav__item-icon"><img class="ofcn" src="{{ 'icon-cart.svg' | asset_url }}" alt="Cart"></span>
                     {% if cart.item_count > 0 %}
                         <span class="profile-nav__item-text">{{ cart.item_count }}</span>
                     {% endif %}
                 </a>
-                
-                {% if shop.customer_accounts_enabled %}
-                    {% if customer %}
-                        <a class="profile-nav__item" href="/account">account</a>
-                        {{ 'log out' | customer_logout_link | replace: '<a', '<a class="profile-nav__item"'  }}
-                    {% else %}
-                        {{ 'log in ' | customer_login_link | replace: '<a', '<a class="profile-nav__item"'  }}
-                        {{ 'register' | customer_register_link | replace: '<a', '<a class="profile-nav__item"' }}
-                    {% endif %}
-                {% endif %}
             </div>
+
+            <div class="header__menu-trigger menu-trigger d-lg-none"><div class="menu-trigger__lines"><i></i><i></i><i></i></div></div>
         </div>
     </div>
+
+    {% include 'mobile-menu' %}
 </header>
 

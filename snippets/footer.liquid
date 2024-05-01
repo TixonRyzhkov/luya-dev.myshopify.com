@@ -1,9 +1,56 @@
+<section class="subscribe section-yellow no-padding">
+    <div class="subscribe__wrapper wrapper">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="subscribe__content limit-width flex-block">
+                    <div class="subscribe__pretitle text-s bold">Du willst nichts mehr verpassen?</div>
+                    <div class="subscribe__title title-s">Melde Dich zum Newsletter an:</div>
+                    <form class="subscribe__form" action="">
+                        <input type="email" placeholder="E-Mail" />
+                    </form>
+                    <div class="subscribe__text text text-xs">
+                        Mit der Anmeldung zu unserem Newsletter akzeptierst Du unsere <a href="#">Datenschutzerklärung</a> und <a href="#">AGB</a>.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="subscribe__image">
+                    <img class="ofc" src="{{ 'subscribe.jpg' | asset_url }}" alt="Subscribe" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="prefooter section-yellow no-padding">
+    <div class="prefooter__wrapper wrapper">
+        <div class="prefooter__content flex-block limit-width">
+            <div class="prefooter__pretitle">Swiss made.</div>
+            <div class="prefooter__title title-s">Folge uns auf Social Media:</div>
+            <div class="prefooter-media__socials">
+                <a class="prefooter-media__socials-website text-l" href="/">luya.bio</a>
+                <div class="socials">
+                    <a class="socials-item" href="https://www.tiktok.com/@luya.bio" target="_blank" rel="nofollow">
+                        <img class="ofc" src="{{ 'icon-tiktok.svg' | asset_url }}" alt="tiktok" />    
+                    </a>
+                    <a class="socials-item" href="https://www.instagram.com/luya.bio/" target="_blank" rel="nofollow">
+                        <img class="ofc" src="{{ 'icon-instagram.svg' | asset_url }}" alt="instagram" />        
+                    </a>
+                    <a class="socials-item" href="https://www.facebook.com/luya.bio" target="_blank" rel="nofollow">
+                        <img class="ofc" src="{{ 'icon-facebook.svg' | asset_url }}" alt="facebook" />  
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <footer class="footer">
     <div class="footer__wrapper wrapper">
-
-        {% for link in linklists.footer.links %}
-            <a href="{{ link.url }}">{{ link.title }}</a>
-        {% endfor %}
-    
+        <div class="footer__nav">
+            {% for link in linklists.footer.links %}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endfor %}
+        </div>
     </div>
 </footer>

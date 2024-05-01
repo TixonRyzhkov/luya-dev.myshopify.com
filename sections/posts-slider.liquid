@@ -2,7 +2,7 @@
     {
         "name": "Posts slider",
         "tag": "section",
-        "class": "section posts-slider",
+        "class": "posts-slider section-pink no-padding",
         "settings": [
             {
                 "type": "text",
@@ -29,25 +29,27 @@
 {% endschema %}
 
 {% assign blog_handle = section.settings.blog %}
-<div class="posts-slider__wrapper wrapper">
-    <div class="posts-slider__pretitle text-l centered">{{ section.settings.pretitle }}</div>
-    <h2 class="posts-slider__title title centered">{{ section.settings.title }}</h2>
+<div class="posts-slider__inner section-inner">
+    <div class="posts-slider__wrapper wrapper">
+        <div class="posts-slider__content flex-block">
+            <div class="posts-slider__pretitle text-l centered">{{ section.settings.pretitle }}</div>
+            <h2 class="posts-slider__title title centered">{{ section.settings.title }}</h2>
+        </div>
+    </div>
 
     {% if blog_handle %}
         {% assign blog = blogs[blog_handle] %}
         {% if blog %}
             {% assign posts = blog.articles %}
             {% if posts.size > 0 %}
-                <div class="posts-slider__content padded-wrapper">
-                    <div class="posts-slider__slider">
-                        <div class="swiper">
-                            <div class="swiper-wrapper">
-                                {% for post in posts %}
-                                    <div class="swiper-slide w-auto">
-                                        {% include 'posts-item' post:post class:'posts-slider-item posts-item' %}
-                                    </div>
-                                {% endfor %}
-                            </div>
+                <div class="posts-slider__slider padded-wrapper">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            {% for post in posts %}
+                                <div class="swiper-slide w-auto">
+                                    {% include 'posts-item' post:post class:'posts-slider-item' %}
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -60,10 +62,18 @@
     {% else %}
         <div class="not-found">Please select a blog.</div>
     {% endif %}
+
+    <div class="posts-slider__wrapper wrapper">
+        <div class="posts-slider__scrollbar slider-scrollbar"></div>
+    </div>
 </div>
 
 {% stylesheet %}
 .posts-slider {
     background: var(--color-peach);
+}
+
+.posts-slider__title {
+    margin-bottom: 5.5rem;
 }
 {% endstylesheet %}
