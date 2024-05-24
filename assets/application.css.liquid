@@ -222,7 +222,6 @@ input[type="submit"]:hover {
 input[type='text'],
 input[type='email'],
 input[type='tel'],
-input[type='number'],
 input[type='password'],
 input[type='search'],
 textarea,
@@ -265,6 +264,11 @@ select {
     margin-bottom: 2rem;
 }
 
+.form__group label {
+    display: block;
+    margin-bottom: 1rem;
+}
+
 .shopify-challenge__container {
     padding: 6rem 0;
 }
@@ -277,6 +281,10 @@ select {
 
 .g-recaptcha {
     margin-bottom: 5rem;
+}
+
+.title-margin {
+    margin-bottom: 10rem;
 }
 
 
@@ -751,10 +759,12 @@ select {
 
 /* product START */
 .product__media {
-    margin-bottom: 6rem;
+    width: 28.6rem;
+    margin: 0 auto 6rem;
 }
 
 .product__image {
+    aspect-ratio: 285/400;
     margin-bottom: 3.5rem;
 }
 
@@ -779,6 +789,18 @@ select {
 .product__label {
     width: 8rem;
     aspect-ratio: 1/1;
+}
+
+.product__title {
+    margin-bottom: 2.5rem;
+}
+
+.product .form__group {
+    margin-bottom: 4rem;
+}
+
+.product__description {
+    padding-top: 7rem;
 }
 /* product END */
 
@@ -861,6 +883,16 @@ select {
 
 
 
+
+/* recipes START */
+.recipes__title {
+    margin-bottom: 4rem;
+}
+/* recipes END */
+
+
+
+
 /* cart START */
 table {
     width: 100%;
@@ -916,3 +948,64 @@ table td {
     height: 0;
 }
 /* globo-form END */
+
+
+
+
+/* qty START */
+.qty-block {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.qty-block__btn {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    width: 3.2rem;
+    background: transparent;
+    border: 0.1rem solid var(--color-orange);
+    border-radius: 100%;
+    font-size: 0rem;
+    color: var(--color-orange);
+    position: relative;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.qty-block__btn:hover {
+    background: var(--color-orange);
+    color: #fff;
+}
+
+.qty-block__btn::before,
+.qty-block__btn::after {
+    content: '';
+    width: 1.4rem;
+    height: 0.2rem;
+    background: currentColor;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.qty-block__btn::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.qty-block__btn.minus::after {
+    display: none;
+}
+
+.qty-block input {
+    width: 3.6rem;
+    height: 3.2rem;
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--color-red);
+}
+/* qty END */

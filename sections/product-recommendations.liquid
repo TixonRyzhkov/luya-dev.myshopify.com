@@ -2,6 +2,7 @@
     {
         "name": "Product recommendations",
         "class": "product-recommendations",
+        "tag": "section",
         "settings": []
     }
 {% endschema %}
@@ -11,30 +12,31 @@
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related"
 >
     {%- if recommendations.performed? and recommendations.products_count > 0 -%}
-        {% if recommendations.intent == 'related' %}
-            <h2 class="product-recommendations__title title">You may also like</h2>
-        {% elsif recommendations.intent == 'complementary' %}
-            <h2 class="product-recommendations__title title">Pair it with</h2>
-        {% endif %}
+        <h2 class="product-recommendations__title title centered title-margin">
+            {% if recommendations.intent == 'related' %}
+                You may also like
+            {% elsif recommendations.intent == 'complementary' %}
+                Pair it with
+            {% endif %}
+        </h2>
 
         <div class="product-recommendations__list">
             <div class="row row-v">
                 {%- for product in recommendations.products -%}
-                    <div class="col-lg-4">
-                        <a class="product-recommendations-item" href="{{ product.url }}">
-                            <div class="product-recommendations-item__image">
-                                {{ product | image_url: width: 360 | image_tag: class: 'ofc', loading: 'lazy' }}
-                            </div>
-    
-                            <div class="product-recommendations-item__title text-l">{{ product.title }}</div>
-                            <div class="product-recommendations-item__price">{{ product.price | money}}</div>
-                        </a>
+                    <div class="featured-products__col col-md-4 d-flex justify-content-center">
+                        {% include 'products-item', product:product %}
                     </div>
                 {%- endfor -%}
             </div>
         </div>
     {%- endif -%}
 </div>
+
+{% stylesheet %}
+
+{% endstylesheet %}
+
+
 
 {% javascript %}
 const handleIntersection = (entries, observer) => {

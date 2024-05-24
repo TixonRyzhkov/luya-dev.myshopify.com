@@ -13,6 +13,16 @@
     {%- if settings.favicon != blank -%}
         <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
+
+    {{ 'fonts.css' | asset_url | stylesheet_tag }}
+    
+    {{ 'bootstrap-grid.min.css' | asset_url | stylesheet_tag }}
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    {{ 'reset.css' | asset_url | stylesheet_tag }}
+    {{ 'application.css' | asset_url | stylesheet_tag }}
+    {{ 'media.css' | asset_url | stylesheet_tag }}
+    {{ 'menu.css' | asset_url | stylesheet_tag }}
+
     {{ content_for_header }} <!-- Header hook for plugins -->
 </head>
 
@@ -25,15 +35,6 @@
     </main>
 
     {% include 'footer' %}
-
-    {{ 'fonts.css' | asset_url | stylesheet_tag }}
-    
-    {{ 'bootstrap-grid.min.css' | asset_url | stylesheet_tag }}
-    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
-    {{ 'reset.css' | asset_url | stylesheet_tag }}
-    {{ 'application.css' | asset_url | stylesheet_tag }}
-    {{ 'media.css' | asset_url | stylesheet_tag }}
-    {{ 'menu.css' | asset_url | stylesheet_tag }}
 
     {{ 'jquery-3.7.1.min.js' | asset_url | script_tag }}
     {{ 'swiper-bundle.min.js' | asset_url | script_tag }}

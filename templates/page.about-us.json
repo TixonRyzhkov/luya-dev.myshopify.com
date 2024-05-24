@@ -1,0 +1,9 @@
+{
+    "name": "Default",
+    "sections": {
+        "dummy": {
+            "type": "dummy"
+        }
+    },
+    "order": ["dummy"]
+}

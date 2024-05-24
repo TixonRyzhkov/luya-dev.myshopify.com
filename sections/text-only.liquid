@@ -10,6 +10,11 @@
             "label": "Image"
         },
         {
+            "type": "image_picker",
+            "id": "big_image",
+            "label": "Big image"
+        },
+        {
             "type": "text",
             "id": "pretitle",
             "label": "Pretitle",
@@ -109,6 +114,11 @@
                 <div class="text-only__bigtext title-l">{{ section.settings.bigtext }}</div>
             {% endif %}
     
+            {% if section.settings.big_image %}
+                <div class="text-only__big-image inner-wrap">
+                    <img class="ofc" src="{{ section.settings.big_image | img_url: 'original' }}" alt="image">
+                </div>
+            {% endif %}
 
             {% if section.settings.text != blank %}
                 <div class="text-only__text text bold inner-wrap">{{ section.settings.text }}</div>
@@ -135,5 +145,13 @@
     
     .text-only__image {
         height: 13.5rem;
+    }
+
+    .text-only__big-image {
+        width: 90rem;
+    }
+
+    .text-only:has(.section-white) + section:not(.no-padding) {
+        padding-top: 0;
     }
 {% endstylesheet %}

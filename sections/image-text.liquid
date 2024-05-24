@@ -1,0 +1,99 @@
+{% schema %}
+    {
+        "name": "Image text",
+        "class": "section image-text",
+        "tag": "section",
+        "presets": [
+            {
+                "name": "Image text"
+            }
+        ],
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title",
+                "default": "Welcome to our Store"
+            }
+        ],
+        "blocks": [
+            {
+                "name": "Item",
+                "type": "item",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "Image"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "text",
+                        "label": "Text"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}
+
+{% if section.blocks.size > 0 %}
+    <div class="image-text__wrapper wrapper">
+
+        {% if section.settings.title != blank %}
+            <h2 class="image-text__title title centered">{{ section.settings.title }}</h2>
+        {% endif %}
+
+        <div class="image-text__list">
+            {% assign counter = 1 %}
+            {% for block in section.blocks %}
+                {% assign is_even = counter | modulo: 2 %}
+
+                <div class="image-text-item {% if is_even == 0 %} even {% endif %}">
+                    <div class="row align-items-center">
+                        {% if block.settings.image != blank %}
+                            <div class="col-md-6 d-flex {% if is_even == 0 %} order-md-1 justify-content-end {% endif %}">
+                                <div class="image-text-item__image">
+                                    <img class="ofc" src="{{ block.settings.image | img_url: 'original' }}" alt="{{ block.settings.title }}" width="530" height="530">
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if block.settings.text != blank %}
+                            <div class="col-md-6">
+                                <div class="image-text-item__text text">{{ block.settings.text }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% assign counter = counter | plus: 1 %}
+            {% endfor %}
+        </div>
+
+    </div>
+{% endif %}
+
+{%  stylesheet  %}
+    .image-text__title {
+        margin-bottom: 10rem; 
+    }
+
+    .image-text-item + .image-text-item {
+        padding-top: 5rem;
+    }
+
+    .image-text-item__image {
+        aspect-ratio: 1;
+        width: 53rem;
+        max-width: 100%;
+        transform: rotate(-3deg);
+    }
+
+    .image-text-item.even .image-text-item__image {
+        transform: rotate(3deg);
+    }
+
+    .image-text-item__text {
+        padding-block: 4rem;
+    }
+{% endstylesheet %}

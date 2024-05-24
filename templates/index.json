@@ -1,9 +1,9 @@
 {
     "name": "Default",
     "sections": {
-        "template-homepage": {
+        "dummy": {
             "type": "dummy"
         }
     },
-    "order": ["template-homepage"]
+    "order": ["dummy"]
 }

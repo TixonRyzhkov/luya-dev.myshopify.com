@@ -3,20 +3,17 @@
         <div class="recipes__wrapper wrapper">
             {% paginate blog.articles by 5 %}
 
-                <h1 class="recipes__title title">{{ blog.title }}</h1>
+                <h1 class="recipes__title title centered">{{ blog.title }}</h1>
 
                 <div class="recipes__row row row-v">
                     {% for article in blog.articles %}
-                        <div class="recipes__col col-md-4">
+                        <div class="recipes__col col-sm-6 col-md-4 col-lg-3">
                             {% include 'posts-item', post:article, class:'recipes-item posts-item' %}
                         </div>
                     {% endfor %}
                 </div>
 
-                {% if paginate.pages > 1 %}
-                    {{ paginate | default_pagination }}
-                {% endif %}
-
+                {% include 'pagination' %}
             {% endpaginate %}
 
         </div>

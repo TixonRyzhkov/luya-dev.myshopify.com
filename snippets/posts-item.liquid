@@ -9,6 +9,6 @@
 {% endif %}
 
 <a class="{{ item_class }} posts-item flex-block" href="{{ post.url }}">
-    <div class="posts-item__image"><img class="ofc" src="{{ post.image.src | img_url: 'medium' }}" alt="{{ post.title }}"></div>
+    <div class="posts-item__image">{{ post.featured_image.src | img_url: 'medium' | img_tag: post.featured_image.alt class: 'ofc' }}</div>
     <h4 class="posts-item__title text-l">{{ post.title }}</h4>
 </a>
