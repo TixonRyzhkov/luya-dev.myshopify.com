@@ -23,6 +23,12 @@
     {{ 'media.css' | asset_url | stylesheet_tag }}
     {{ 'menu.css' | asset_url | stylesheet_tag }}
 
+    {{ 'jquery.min.js' | asset_url | script_tag }}
+    {{ 'swiper-bundle.min.js' | asset_url | script_tag }}
+    {{ 'hulkthemes.js' | asset_url | script_tag }}
+    {{ 'application.js' | asset_url | script_tag }}
+    {{ 'menu.js' | asset_url | script_tag }}
+
     {{ content_for_header }} <!-- Header hook for plugins -->
 </head>
 
@@ -35,11 +41,6 @@
     </main>
 
     {% include 'footer' %}
-
-    {{ 'jquery-3.7.1.min.js' | asset_url | script_tag }}
-    {{ 'swiper-bundle.min.js' | asset_url | script_tag }}
-    {{ 'application.js' | asset_url | script_tag }}
-    {{ 'menu.js' | asset_url | script_tag }}
     
 </body>
 </html>

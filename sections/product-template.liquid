@@ -41,11 +41,11 @@
                                     {% for variant in product.variants %}
                                         {% if variant.available %}
 
-                                        {% comment %}
-                                        Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
-                                        {% endcomment %}
+                                            {% comment %}
+                                            Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
+                                            {% endcomment %} 
 
-                                        <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+                                            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
 
                                         {% else %}
                                             <option disabled="disabled">
@@ -80,5 +80,40 @@
         </div>
     </section>
 
-    {% section 'product-recommendations' %}
+{% comment %}     {% include 'product-recommendations' %} {% endcomment %}
 </div>
+
+
+{% javascript %}
+$(document).ready(function() {
+    const $variantSelector = $('#productSelect');
+    const $productForm = $('.product__form');
+
+    $variantSelector.on('change', function() {
+        const selectedVariantId = $(this).val();
+        updateProductForm(selectedVariantId);
+    });
+
+    function updateProductForm(variantId) {
+        const url = `${window.location.pathname}?variant=${variantId}`;
+
+        $.get(url, function(html) {
+            const $tempDiv = $('<div>').html(html);
+            const $newProductForm = $tempDiv.find('.product__form');
+
+            if ($newProductForm.length) {
+                $productForm.html($newProductForm.html());
+                $('#productSelect').on('change', function() {
+                    updateProductForm($(this).val());
+                });
+            }
+        });
+    }
+
+    if ($variantSelector.val()) {
+        updateProductForm($variantSelector.val());
+    }
+});
+
+
+{% endjavascript %}

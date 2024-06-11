@@ -23,16 +23,9 @@
 
             <div class="profile-nav d-none d-lg-flex">
                 {% if shop.customer_accounts_enabled %}
-                    {% if customer %}
-                        <a class="profile-nav__item" href="/account">
-                            <img class="ofc" src="{{ 'icon-logout.svg' | asset_url }}" alt="Account" />
-                        </a>
-                        {{ 'log out' | customer_logout_link | replace: '<a', '<a class="profile-nav__item"'  }}
-                    {% else %}
-                        <a class="profile-nav__item" href="/login">
-                            <img class="ofc" src="{{ 'icon-profile.svg' | asset_url }}" alt="Log In" />
-                        </a>
-                    {% endif %}
+                    <a class="profile-nav__item" href="{{ routes.account_url }}">
+                        <img class="ofc" src="{{ 'icon-profile.svg' | asset_url }}" alt="Account" />
+                    </a>
                 {% endif %}
 
                 <a class="profile-nav__item" href="/cart">

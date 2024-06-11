@@ -94,6 +94,10 @@ section:not(.no-padding):last-child {
     max-width: 100%;
 }
 
+.hide {
+    display: none;
+}
+
 
 
 
@@ -205,6 +209,11 @@ input[type="submit"]:hover {
     color: #fff;
 }
 
+.btn.centered {
+    display: flex;
+    margin-inline: auto;
+}
+
 .btn_orange {
     background: var(--btn-color);
     color: #fff;
@@ -215,6 +224,28 @@ input[type="submit"]:hover {
     color: var(--btn-color);
 }
 /* btn END */
+
+
+
+
+/* link START */
+.link {
+    display: inline-flex;
+    align-items: center;
+    padding: 2rem 0.5rem;
+    font-weight: 600;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    color: var(--color-orange);
+    text-decoration: underline;
+    transition: 0.3s ease-out;
+}
+
+.link:hover {
+    color: var(--color-red);
+    text-decoration: none;
+}
+/* link END */
 
 
 
@@ -264,6 +295,10 @@ select {
     margin-bottom: 2rem;
 }
 
+.form__group {
+    margin-bottom: 2rem;
+}
+
 .form__group label {
     display: block;
     margin-bottom: 1rem;
@@ -285,6 +320,10 @@ select {
 
 .title-margin {
     margin-bottom: 10rem;
+}
+
+.title-margin-s {
+    margin-bottom: 3rem;
 }
 
 
@@ -1009,3 +1048,42 @@ table td {
     color: var(--color-red);
 }
 /* qty END */
+
+
+
+/* auth START */
+.auth__content {
+    margin-inline: auto;
+}
+
+.auth__title {
+    margin-bottom: 5rem;
+}
+
+.auth__links {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    gap: 2rem;
+}
+
+.auth__links a {
+    transition: 0.3s;
+}
+
+.auth__links a:hover {
+    color: var(--color-orange);
+}
+
+.auth__text {
+    margin-bottom: 5rem;
+}
+
+#recover-form:target {
+    display: block;
+}
+
+#recover-form:target ~ [data-login-form] {
+    display: none;
+}
+/* auth END */
